@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: joined-table/changelog.yml
+      relativeToChangelogFile: true
+  - include:
+      file: single-table/changelog.yml
+      relativeToChangelogFile: true
+  - include:
+      file: table-per-class/changelog.yml
+      relativeToChangelogFile: true

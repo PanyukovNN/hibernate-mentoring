@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: "01.create_employee_tpc.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: employee_jt
+            remarks: "Сотрудник"
+            columns:
+              - column:
+                  name: person_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: "fk_employee_jt_person_jt_id"
+                    reference: person_jt(id)
+              - column:
+                  name: department
+                  type: varchar
+                  remarks: "Департамент сотрудника"
+              - column:
+                  name: position
+                  type: varchar
+                  remarks: "Должность сотрудника"
+              - column:
+                  name: salary
+                  type: numeric(7,2)
+                  remarks: "Заработная плата"

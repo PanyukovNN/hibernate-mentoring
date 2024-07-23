@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - include:
+      file: 01.create_country.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 02.create_company.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 03.create_company_name.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 04.create_users.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 05.create_user_companies.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 06.create_country_name.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 07.create_address.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 08.insert_data.yml
+      relativeToChangelogFile: true

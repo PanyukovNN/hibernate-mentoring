@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: 01.create_person_st.yml
+      relativeToChangelogFile: true

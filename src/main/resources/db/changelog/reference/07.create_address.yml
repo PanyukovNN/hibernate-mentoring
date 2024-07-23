@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: "07.create_address.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: address
+            remarks: "Адрес"
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primary_key: true
+              - column:
+                  name: user_id
+                  type: UUID
+                  remarks: "Идентификатор пользователя"
+                  constraints:
+                    references: users(id)
+                    foreignKeyName: fk_address_user_id
+              - column:
+                  name: city
+                  type: varchar
+                  remarks: "Город"
+              - column:
+                  name: street
+                  type: varchar
+                  remarks: "Улица"

@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: "03.create_client_jt.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: client_jt
+            remarks: "Клиент"
+            columns:
+              - column:
+                  name: person_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: "fk_client_jt_person_jt_id"
+                    reference: person_jt(id)
+              - column:
+                  name: client_type
+                  type: varchar
+                  remarks: "Тип клиента"
+              - column:
+                  name: card_number
+                  type: varchar
+                  remarks: "Номер карты"

@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: "02.create_company.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: company
+            remarks: "Компании"
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: country_id
+                  type: uuid
+                  remarks: "Идентификатор страны"
+                  constraints:
+                    references: country(id)
+                    foreignKeyName: fk_company_country_id

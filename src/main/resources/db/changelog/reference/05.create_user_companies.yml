@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: "05.create_user_companies.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: user_companies
+            remarks: "Компании пользователей"
+            columns:
+              - column:
+                  name: user_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    references: users(id)
+                    foreignKeyName: fk_user_companies_user_id
+              - column:
+                  name: company_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    references: company(id)
+                    foreignKeyName: fk_user_companies_company_id

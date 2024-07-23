@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: 01.create_person_jt.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 02.create_employee_jt.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 03.create_client_jt.yml
+      relativeToChangelogFile: true

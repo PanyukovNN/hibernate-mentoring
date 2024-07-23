@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: "01.create_country.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: country
+            remarks: "Страны"
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: code
+                  type: varchar
+                  remarks: "Код страны"

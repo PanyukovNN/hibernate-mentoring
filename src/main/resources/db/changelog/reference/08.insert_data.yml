@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: "08.insert_data.yml"
+      author: "Panyukov NN"
+      changes:
+        - sqlFile:
+            path: sql/country.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: sql/country_name.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: sql/company.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: sql/company_name.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: sql/users.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: sql/address.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: sql/user_companies.sql
+            relativeToChangelogFile: true

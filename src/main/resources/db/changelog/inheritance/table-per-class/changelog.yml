@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: 01.create_employee_tpc.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 02.create_client_tpc.yml
+      relativeToChangelogFile: true

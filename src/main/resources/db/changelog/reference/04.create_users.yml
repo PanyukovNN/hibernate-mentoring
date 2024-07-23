@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: "04.create_users.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: users
+            remarks: "Пользователи"
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: first_name
+                  type: varchar
+                  remarks: "Имя"

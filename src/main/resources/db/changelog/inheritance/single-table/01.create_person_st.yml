@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: "01.create_person_st.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: person_st
+            remarks: "Человек"
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: person_type
+                  type: varchar
+                  remarks: "Тип сущности"
+              - column:
+                  name: first_name
+                  type: varchar
+                  remarks: "Имя"
+              - column:
+                  name: last_name
+                  type: varchar
+                  remarks: "Фамилия"
+              - column:
+                  name: sex
+                  type: varchar
+                  remarks: "Пол"
+              - column:
+                  name: birth_date
+                  type: date
+                  remarks: "Дата рождения"
+
+              - column:
+                  name: department
+                  type: varchar
+                  remarks: "Департамент сотрудника"
+              - column:
+                  name: position
+                  type: varchar
+                  remarks: "Должность сотрудника"
+              - column:
+                  name: salary
+                  type: numeric(7,2)
+                  remarks: "Заработная плата"
+
+              - column:
+                  name: client_type
+                  type: varchar
+                  remarks: "Тип клиента"
+              - column:
+                  name: card_number
+                  type: varchar
+                  remarks: "Номер карты"
