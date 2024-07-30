@@ -21,3 +21,8 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: validate
+
+#logging:
+#  level:
+#    org.springframework.orm.jpa: DEBUG  # Для отображения транзакций в логах
+#    org.springframework.transaction: DEBUG

@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: "02.update_counter_add_version.yml"
+      author: "Panyukov NN"
+      changes:
+        - addColumn:
+            tableName: counter
+            columns:
+              - column:
+                  name: version
+                  type: bigint

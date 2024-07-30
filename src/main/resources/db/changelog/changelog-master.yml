@@ -5,3 +5,6 @@ databaseChangeLog:
   - include:
       file: "inheritance/changelog.yml"
       relativeToChangelogFile: true
+  - include:
+      file: "transaction/changelog.yml"
+      relativeToChangelogFile: true

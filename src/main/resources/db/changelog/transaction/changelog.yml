@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: 01.create_counter.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 02.update_counter_add_version.yml
+      relativeToChangelogFile: true

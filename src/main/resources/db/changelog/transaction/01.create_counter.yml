@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: "01.create_counter.yml"
+      author: "Panyukov NN"
+      changes:
+        - createTable:
+            ifNotExists: true
+            tableName: counter
+            remarks: "Счетчик"
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: client_id
+                  type: UUID
+                  remarks: "Идентификатор клиента"
+              - column:
+                  name: amount
+                  type: int
+                  remarks: "Сумма транзакций"
