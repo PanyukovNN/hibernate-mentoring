@@ -34,7 +34,7 @@ public class User {
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "company_id")
     )
-//    @ToString.Exclude
+    @ToString.Exclude
     private List<Company> companies;
 
     @Override

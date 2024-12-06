@@ -20,6 +20,25 @@ public class LifecycleTest extends AbstractTest {
     }
 
     @Test
+    void reattachEntity() {
+        User user = new User(); // Transient
+
+        transactionTemplate.executeWithoutResult(ts -> {
+            user.setFirstName("Unknown");
+            entityManager.persist(user); // Persistent / Managed
+        });
+
+        transactionTemplate.executeWithoutResult(ts -> {
+            // Detached
+
+            User persistentUser = entityManager.merge(user); // Persistent / Managed
+            System.out.println(persistentUser.getFirstName());
+
+            entityManager.remove(persistentUser); // Removed
+        });
+    }
+
+    @Test
     void queriesAtTheEndOfTransaction() {
         User user = new User(); // Transient
 
@@ -30,7 +49,7 @@ public class LifecycleTest extends AbstractTest {
 
 //            entityManager.flush(); // Выполняет накопившиеся в кеше запросы
 
-            System.out.println("After all actions"); // Выполнение запросов происходит до
+            System.out.println("After all actions or not?");
         });
     }
 
