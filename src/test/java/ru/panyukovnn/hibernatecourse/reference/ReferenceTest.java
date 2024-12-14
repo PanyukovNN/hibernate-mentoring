@@ -3,11 +3,13 @@ package ru.panyukovnn.hibernatecourse.reference;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import ru.panyukovnn.hibernatecourse.AbstractTest;
-import ru.panyukovnn.hibernatecourse.reference.model.Company;
-import ru.panyukovnn.hibernatecourse.reference.model.CompanyName;
-import ru.panyukovnn.hibernatecourse.reference.model.Lang;
+import ru.panyukovnn.hibernatecourse.reference.model.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -15,9 +17,11 @@ import java.util.UUID;
 class ReferenceTest extends AbstractTest {
 
     @Test
+    @Transactional
     void oneToOneLazyEager() {
-        addressRepository.findAll()
-            .forEach(it -> log.info(it.toString()));
+        List<Address> all = addressRepository.findAll();
+
+        all.forEach(it -> log.info(it.toString()));
     }
 
     @Test
@@ -30,8 +34,11 @@ class ReferenceTest extends AbstractTest {
     @Test
     @Transactional // требуется транзакция из-за дополнительных запросов при выводе в консоль
     void nPlusOneProblem() {
-        userRepository.findAll()
-            .forEach(it -> log.info(it.toString()));
+        // Добавить FetchType.EAGER над user#companies
+
+        List<User> all = userRepository.findAll();
+
+        all.forEach(it -> log.info(it.toString()));
     }
 
     @Test
@@ -41,6 +48,7 @@ class ReferenceTest extends AbstractTest {
     }
 
     @Test
+    @Transactional
     void entityGraphSolution() {
         userRepository.findAllBy()
             .forEach(it -> log.info(it.toString()));
@@ -96,6 +104,7 @@ class ReferenceTest extends AbstractTest {
     }
 
     @Test
+    @Transactional
     void noCascade() {
         // Убрать cascade
 
@@ -112,4 +121,13 @@ class ReferenceTest extends AbstractTest {
         companyRepository.save(company);
         companyNameRepository.save(companyName);
     }
+
+    @Test
+    void entityGraphLimitAndOffsetDoesNotWork() {
+        Pageable pageRequest = PageRequest.of(1, 2, Sort.unsorted());
+
+        companyRepository.findAllByCompanyNamesNameIs("Huawei", pageRequest) // Не отработает limit и offset
+            .forEach(System.out::println);
+    }
+
 }

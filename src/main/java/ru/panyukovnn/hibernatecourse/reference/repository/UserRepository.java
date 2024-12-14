@@ -11,14 +11,20 @@ import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
 
-    @EntityGraph(attributePaths = {User.Fields.address, User.Fields.companies + "." + Company.Fields.country})
+    @EntityGraph(attributePaths = {
+        "address",
+        "companies.country",
+        "companies.companyNames"
+    })
     List<User> findAllBy();
 
-//    @EntityGraph(attributePaths = {"address", "companies.country"})
+    @EntityGraph(attributePaths = {
+        "address",
+        "companies.country",
+        "companies.companyNames"
+    })
     @Query("""
         FROM User u
-        LEFT JOIN FETCH u.address
-        LEFT JOIN FETCH u.companies
         """)
     List<User> findAllWithJoinFetch();
 }

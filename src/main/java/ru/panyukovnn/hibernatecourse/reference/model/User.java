@@ -25,7 +25,8 @@ public class User {
 
     private String firstName;
 
-    @OneToOne(mappedBy = "user")
+    @ToString.Exclude
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Address address;
 
     @ManyToMany
@@ -34,7 +35,7 @@ public class User {
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "company_id")
     )
-    @ToString.Exclude
+//    @ToString.Exclude
     private List<Company> companies;
 
     @Override
