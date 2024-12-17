@@ -22,10 +22,10 @@ public class PessimisticLockExample {
             .amount(100)
             .build());
 
-        Thread thread1 = new Thread(() -> decrementCounter(counter.getId(), 75, 1000));
+        Thread thread1 = new Thread(() -> decrementCounterPerssimisticRead(counter.getId(), 25, 1000));
         thread1.start();
 
-        Thread thread2 = new Thread(() -> decrementCounter(counter.getId(), 50, 1000));
+        Thread thread2 = new Thread(() -> decrementCounterPerssimisticRead(counter.getId(), 35, 500));
         thread2.start();
 
         thread1.join();
@@ -35,7 +35,7 @@ public class PessimisticLockExample {
             .ifPresent(System.out::println);
     }
 
-    private void decrementCounter(UUID counterId, int transactionAmount, int sleepMs) {
+    private void decrementCounterPerssimisticRead(UUID counterId, int transactionAmount, int sleepMs) {
         transactionalService.runInTransaction(() -> {
             Counter dbCounter = counterRepository.findPessimisticById(counterId)
                 .orElseThrow();
@@ -59,10 +59,10 @@ public class PessimisticLockExample {
             .amount(100)
             .build());
 
-        Thread thread1 = new Thread(() -> decrementCounterWrite(counter.getId(), 50, 500));
+        Thread thread1 = new Thread(() -> decrementCounterPessimisticWrite(counter.getId(), 25, 1000));
         thread1.start();
 
-        Thread thread2 = new Thread(() -> decrementCounterWrite(counter.getId(), 75, 1000));
+        Thread thread2 = new Thread(() -> decrementCounterPessimisticWrite(counter.getId(), 35, 500));
         thread2.start();
 
         thread1.join();
@@ -73,7 +73,7 @@ public class PessimisticLockExample {
                 .ifPresent(System.out::println));
     }
 
-    private void decrementCounterWrite(UUID counterId, int transactionAmount, int sleepMs) {
+    private void decrementCounterPessimisticWrite(UUID counterId, int transactionAmount, int sleepMs) {
         transactionalService.runInTransaction(() -> {
             Counter dbCounter = counterRepository.findPessimisticForceIncrementById(counterId)
                 .orElseThrow();
@@ -89,5 +89,4 @@ public class PessimisticLockExample {
             counterRepository.save(dbCounter);
         });
     }
-
 }

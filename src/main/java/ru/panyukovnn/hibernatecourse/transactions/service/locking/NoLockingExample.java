@@ -22,10 +22,10 @@ public class NoLockingExample {
             .amount(100)
             .build());
 
-        Thread thread1 = new Thread(() -> decrementCounter(counter.getId(), 75));
+        Thread thread1 = new Thread(() -> decrementCounter(counter.getId(), 25));
         thread1.start();
 
-        Thread thread2 = new Thread(() -> decrementCounter(counter.getId(), 50));
+        Thread thread2 = new Thread(() -> decrementCounter(counter.getId(), 35));
         thread2.start();
 
         thread1.join();

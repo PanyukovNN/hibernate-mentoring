@@ -11,7 +11,6 @@ import java.util.UUID;
 
 public interface CounterOptimisticRepository extends JpaRepository<CounterOptimistic, UUID> {
 
-    @Lock(LockModeType.OPTIMISTIC)
     Optional<CounterOptimistic> findOptimisticById(UUID id);
 
     @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)

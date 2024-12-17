@@ -24,10 +24,10 @@ public class OptimisticLockExample {
             .amount(100)
             .build());
 
-        Thread thread1 = new Thread(() -> decrementCounter(counter.getId(), 75, 1000));
+        Thread thread1 = new Thread(() -> decrementCounter(counter.getId(), 25, 1000));
         thread1.start();
 
-        Thread thread2 = new Thread(() -> decrementCounter(counter.getId(), 50, 500));
+        Thread thread2 = new Thread(() -> decrementCounter(counter.getId(), 35, 500));
         thread2.start();
 
         thread1.join();
@@ -91,10 +91,10 @@ public class OptimisticLockExample {
             .amount(100)
             .build());
 
-        Thread thread1 = new Thread(() -> decrementCounterWithRetry(counter.getId(), 75, 1000));
+        Thread thread1 = new Thread(() -> decrementCounterWithRetry(counter.getId(), 25, 1000));
         thread1.start();
 
-        Thread thread2 = new Thread(() -> decrementCounterWithRetry(counter.getId(), 50, 500));
+        Thread thread2 = new Thread(() -> decrementCounterWithRetry(counter.getId(), 35, 500));
         thread2.start();
 
         thread1.join();

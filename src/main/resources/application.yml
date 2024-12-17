@@ -16,14 +16,16 @@ spring:
     enabled: true
     change-log: classpath:/db/changelog/changelog-master.yml
   jpa:
-    show-sql: true
+#    show-sql: true
     properties:
       hibernate:
         format_sql: true
     hibernate:
       ddl-auto: validate
 
-#logging:
-#  level:
+logging:
+  level:
 #    org.springframework.orm.jpa: DEBUG  # Для отображения транзакций в логах
 #    org.springframework.transaction: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE

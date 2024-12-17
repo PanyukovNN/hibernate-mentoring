@@ -15,7 +15,7 @@ import java.util.List;
 public class TransactionExample {
 
     private final CounterRepository counterRepository;
-    private final TransactionalService transactionalService;
+    private final TransactionalService transactionalService; // Для выполнения части кода в транзакции, без самоинъекции
 
     @jakarta.transaction.Transactional
     public void jakartaTransaction() {
@@ -23,10 +23,6 @@ public class TransactionExample {
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void repeatableReadIsolationLevel() {
-        transactionalService.runInTransaction(() -> {
-            counterRepository.findAll();
-        });
-
         List<Counter> counters = counterRepository.findAll();
 
         // doSomething
@@ -42,6 +38,7 @@ public class TransactionExample {
             .amount(111)
             .build());
 
+        // При checked исключении rollback не выполнится
         throw new Exception();
     }
 

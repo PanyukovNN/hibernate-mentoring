@@ -27,7 +27,7 @@ public class LockingTest extends AbstractTest {
 
     @Test
     void pessimisticReadLocking() throws InterruptedException {
-        // Возникает дедлок
+        // Возникает дедлок, одна из транзакций откатывается
 
         pessimisticLockExample.pessimisticReadLocking();
     }
